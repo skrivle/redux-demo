@@ -24,7 +24,8 @@ class Cart extends React.Component {
 				id={item.id}
 				name={item.name}
 				amount={item.amount}
-				onUpdate={this.onItemUpdate}></CartItem></li>;
+				onUpdate={this.onItemUpdate}
+				disabled={this.props.isFetching}></CartItem></li>;
 		});
 
 		return (
@@ -42,7 +43,8 @@ class Cart extends React.Component {
 
 function select (state) {
 	return {
-		items: state.cart
+		items: state.cart.items,
+		isFetching: state.cart.isFetching
 	};
 }
 

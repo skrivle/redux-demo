@@ -7,3 +7,6 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const PLUS = '+';
 export const MIN = '-';
 
+export const UPDATE_CART_SUCCESS = 'UPDATE_CART_SUCCESS';
+export const UPDATE_CART_REQUEST = 'UPDATE_CART_REQUEST';
+

@@ -1,8 +1,10 @@
-import {ADD_ITEM, UPDATE_ITEM, REMOVE_ITEM} from '../constants/actionTypes';
-
+import {UPDATE_CART_REQUEST, UPDATE_CART_SUCCESS} from '../constants/actionTypes';
 
 const initialState = {
-	cart: [],
+	cart: {
+		isFetching: false,
+		items: []
+	},
 	products: []
 };
 
@@ -24,63 +26,22 @@ export function cart (state = initialState, action) {
 
 	switch (action.type) {
 
-		case ADD_ITEM:
-
-			const newState = Object.assign({}, state, {});
-
-			let match = false;
-
-			newState.cart.forEach(item => {
-				if(item.id === action.id) {
-					match = true;
-				}
-			});
-
-			if(!match) {
-
-				const product = getProductById(state, action.id);
-
-				newState.cart = [
-					...state.cart,
-					{
-						id: product.id,
-						name: product.name,
-						amount: 1
-					}
-				]
-			}
-
-			return newState;
-
-			break;
-
-		case UPDATE_ITEM:
-
-			if(action.amount < 1) {
-				return Object.assign({}, state, {});
-			}
+		case UPDATE_CART_REQUEST:
 
 			return Object.assign({}, state, {
-				cart: state.cart.map(curr => {
-					if(curr.id === action.id) {
-
-						return Object.assign({}, curr, {
-							amount: action.amount
-						});
-
-					}else {
-						return curr;
-					}
+				cart: Object.assign({}, state.cart, {
+					isFetching: true
 				})
 			});
 
 			break;
 
-		case REMOVE_ITEM:
+		case UPDATE_CART_SUCCESS:
 
 			return Object.assign({}, state, {
-				cart: state.cart.filter(item => {
-					return item.id !== action.id
+				cart: Object.assign({}, state.cart, {
+					isFetching: false,
+					items: action.items
 				})
 			});
 
@@ -88,7 +49,6 @@ export function cart (state = initialState, action) {
 
 		default:
 			return state;
-			break;
 	}
 
 }

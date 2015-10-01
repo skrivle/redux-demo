@@ -27,10 +27,10 @@ export default class Product extends React.Component {
 		let control, deleteButton;
 
 		if(!this.props.amount) {
-			control = <button onClick={this.onAddBtnClick}>Add to cart</button>
+			control = <button onClick={this.onAddBtnClick} disabled={this.props.disabled}>Add to cart</button>
 		}else {
-			control = <Spinner value={this.props.amount} onUpdate={this.onSpinnerUpdate}/>
-			deleteButton = <button onClick={this.onDeleteButtonClick}>x</button>
+			control = <Spinner value={this.props.amount} onUpdate={this.onSpinnerUpdate} disabled={this.props.disabled}/>
+			deleteButton = <button onClick={this.onDeleteButtonClick} disabled={this.props.disabled}>x</button>
 		}
 
 		return (

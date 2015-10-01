@@ -49,7 +49,8 @@ class ProductList extends React.Component {
 					amount={getProductAmountFromCart(this.props.cart, item.id)}
 					onAdd={this.onAdd.bind(this, item.id)}
 					onUpdate={this.onUpdate}
-					onDelete={this.onDelete.bind(this, item.id)}/>
+					onDelete={this.onDelete.bind(this, item.id)}
+					disabled={this.props.isFetching}/>
 				</li>;
 		})
 
@@ -65,7 +66,8 @@ class ProductList extends React.Component {
 function select (state) {
 	return {
 		products: state.products,
-		cart: state.cart
+		cart: state.cart.items,
+		isFetching: state.cart.isFetching
 	};
 }
 

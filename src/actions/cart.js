@@ -1,24 +1,49 @@
 
-import {ADD_ITEM, UPDATE_ITEM, REMOVE_ITEM} from '../constants/actionTypes';
+import {
+	ADD_ITEM,
+	UPDATE_ITEM,
+	REMOVE_ITEM,
+	UPDATE_CART_REQUEST,
+	UPDATE_CART_SUCCESS} from '../constants/actionTypes';
 
-export function addItem (id, name, amount) {
+import cartService from '../services/cartService';
+
+function requestCart (id) {
 	return {
-		type: ADD_ITEM,
-		id: id
+		type: UPDATE_CART_REQUEST
 	}
+}
+
+function receiveCart (items) {
+	return {
+		type: UPDATE_CART_SUCCESS,
+		items: items
+	}
+}
+
+function _updateItem (id, amount) {
+	return function (dispatch) {
+
+		dispatch(requestCart());
+
+		cartService
+			.updateItem(id, amount)
+			.then((items) => {
+				dispatch(receiveCart(items));
+			});
+
+	}
+}
+
+export function addItem (id) {
+
+	return _updateItem(id, 1);
 }
 
 export function updateItem (id, amount) {
-	return {
-		type: UPDATE_ITEM,
-		id: id,
-		amount: amount
-	}
+	return _updateItem(id, amount);
 }
 
-export function removeItem (id, amount) {
-	return {
-		type: REMOVE_ITEM,
-		id: id
-	}
+export function removeItem (id) {
+	return _updateItem(id, 0);
 }

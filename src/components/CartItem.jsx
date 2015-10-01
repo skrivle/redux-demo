@@ -16,7 +16,7 @@ export default class CartItem extends React.Component {
 		return (
 			<div>
 				<div>{this.props.name}</div>
-				<Spinner value={this.props.amount} onUpdate={this.onSpinnerUpdate}/>
+				<Spinner value={this.props.amount} onUpdate={this.onSpinnerUpdate} disabled={this.props.disabled}/>
 			</div>
 		)
 	}
