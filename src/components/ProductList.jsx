@@ -72,22 +72,16 @@ class ProductList extends React.Component {
 		}
 
 		return (
-
 			<div>
-
 				<div className="row">
 					{products}
 				</div>
-
-
 				<nav className="text-center">
 					<ul className="pagination">
 						{pages}
 					</ul>
 				</nav>
 			</div>
-
-
 		)
 	}
 }
