@@ -58,10 +58,7 @@ class ProductList extends React.Component {
 				</div>;
 		});
 
-
 		const pages = [];
-
-		console.log('pages', this.props.pages)
 
 		for(let i = 1; i <= this.props.pages; i ++) {
 
@@ -73,8 +70,6 @@ class ProductList extends React.Component {
 
 			pages.push(<li key={i} className={classes}><a href="#" onClick={this.onPagerClick.bind(this, i)}>{i}</a></li>)
 		}
-
-
 
 		return (
 
