@@ -33,8 +33,11 @@ class Cart extends React.Component {
 				<div className="panel-heading">
 					<div className="panel-title">My Cart ({products.length})</div>
 				</div>
+				<div className="panel-body">
 
 				{products}
+
+				</div>
 
 			</div>
 		)
