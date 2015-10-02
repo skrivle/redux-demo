@@ -4,7 +4,8 @@ import {
 	UPDATE_ITEM,
 	REMOVE_ITEM,
 	UPDATE_CART_REQUEST,
-	UPDATE_CART_SUCCESS} from '../constants/actionTypes';
+	UPDATE_CART_SUCCESS,
+	SET_PAGE} from '../constants/actionTypes';
 
 import cartService from '../services/cartService';
 
@@ -36,7 +37,6 @@ function _updateItem (id, amount) {
 }
 
 export function addItem (id) {
-
 	return _updateItem(id, 1);
 }
 
@@ -46,4 +46,11 @@ export function updateItem (id, amount) {
 
 export function removeItem (id) {
 	return _updateItem(id, 0);
+}
+
+export function setPage (page) {
+	return {
+		type: SET_PAGE,
+		page: page
+	}
 }

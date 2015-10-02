@@ -1,7 +1,7 @@
 import React from 'react';
 import Product from './Product';
 import {connect} from 'react-redux';
-import {addItem, updateItem, removeItem} from '../actions/cart';
+import {addItem, updateItem, removeItem, setPage} from '../actions/cart';
 
 
 function getProductAmountFromCart (cart, id) {
@@ -39,6 +39,10 @@ class ProductList extends React.Component {
 		this.props.dispatch(removeItem(id));
 	}
 
+	onPagerClick (page) {
+		this.props.dispatch(setPage(page));
+	}
+
 	render () {
 
 		const products = this.props.products.map(item => {
@@ -52,13 +56,42 @@ class ProductList extends React.Component {
 					onDelete={this.onDelete.bind(this, item.id)}
 					disabled={this.props.isFetching}/>
 				</div>;
-		})
+		});
+
+
+		const pages = [];
+
+		console.log('pages', this.props.pages)
+
+		for(let i = 1; i <= this.props.pages; i ++) {
+
+			let classes = '';
+
+			if(this.props.currentPage === i) {
+				classes = 'active';
+			}
+
+			pages.push(<li key={i} className={classes}><a href="#" onClick={this.onPagerClick.bind(this, i)}>{i}</a></li>)
+		}
+
+
 
 		return (
 
-			<div clasName="container">
-			{products}
+			<div>
+
+				<div className="row">
+					{products}
+				</div>
+
+
+				<nav className="text-center">
+					<ul className="pagination">
+						{pages}
+					</ul>
+				</nav>
 			</div>
+
 
 		)
 	}
@@ -67,9 +100,11 @@ class ProductList extends React.Component {
 
 function select (state) {
 	return {
-		products: state.products,
+		products: state.products.itemsToShow,
 		cart: state.cart.items,
-		isFetching: state.cart.isFetching
+		isFetching: state.cart.isFetching,
+		pages: state.products.pages,
+		currentPage: state.products.currentPage
 	};
 }
 

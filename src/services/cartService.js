@@ -10,7 +10,7 @@ function getProductById(id) {
 
 	let result;
 
-	window.INITIAL_STATE.products.forEach(product => {
+	window.INITIAL_STATE.products.items.forEach(product => {
 		if(id === product.id) {
 			result = product;
 		}

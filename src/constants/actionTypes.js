@@ -10,3 +10,4 @@ export const MIN = '-';
 export const UPDATE_CART_SUCCESS = 'UPDATE_CART_SUCCESS';
 export const UPDATE_CART_REQUEST = 'UPDATE_CART_REQUEST';
 
+export const SET_PAGE = 'SET_PAGE';
