@@ -42,7 +42,7 @@ class ProductList extends React.Component {
 	render () {
 
 		const products = this.props.products.map(item => {
-			return <li key={item.id}>
+			return <div key={item.id} className="col-sm-3">
 				<Product
 					name={item.name}
 					id={item.id}
@@ -51,13 +51,15 @@ class ProductList extends React.Component {
 					onUpdate={this.onUpdate}
 					onDelete={this.onDelete.bind(this, item.id)}
 					disabled={this.props.isFetching}/>
-				</li>;
+				</div>;
 		})
 
 		return (
-			<ul>
-				{products}
-			</ul>
+
+			<div clasName="container">
+			{products}
+			</div>
+
 		)
 	}
 }

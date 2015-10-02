@@ -20,20 +20,22 @@ class Cart extends React.Component {
 		const {dispatch, items} = this.props;
 
 		const products = items.map(item => {
-			return <li key={item.id}><CartItem
+			return <div key={item.id} className="container-fluid form-group"><CartItem
 				id={item.id}
 				name={item.name}
 				amount={item.amount}
 				onUpdate={this.onItemUpdate}
-				disabled={this.props.isFetching}></CartItem></li>;
+				disabled={this.props.isFetching}></CartItem></div>;
 		});
 
 		return (
-			<div>
-				<h2>My Cart ({products.length})</h2>
-				<ul>
-					{products}
-				</ul>
+			<div className="panel panel-primary">
+				<div className="panel-heading">
+					<div className="panel-title">My Cart ({products.length})</div>
+				</div>
+
+				{products}
+
 			</div>
 		)
 
